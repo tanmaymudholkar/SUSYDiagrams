@@ -56,7 +56,7 @@ def Compile(infile):
     os.system("pdfcrop --margins '10 10 10 10' "+infile.replace(".tex", ".pdf"))
     os.system("mv "+infile.replace(".tex", "-crop.pdf")+" "+infile.replace(".tex", ".pdf"))
     os.chdir(orig_dir)
-    print "\n\n\033[32m\033[1m open "+folder+infile.replace(".tex", ".pdf")+"\033[0m\n\n"
+    print("\n\n\033[32m\033[1m open "+folder+infile.replace(".tex", ".pdf")+"\033[0m\n\n")
 
 def CompileAll():
     files = [f for f in os.listdir("./") if f.endswith(".tex")]
