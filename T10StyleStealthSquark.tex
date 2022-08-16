@@ -1,0 +1,141 @@
+
+%%%%%%%%%%%%%%%%%%%%%% Feynman diagram for T2bbHH
+
+\documentclass{article}
+
+\input{shared/header.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\thispagestyle{empty}
+
+
+%%%%%%%% THE NAME OF THE fmffile HAS TO BE ``Feynman<filename>'' TO USE compile.py %%%%%%%%%%%%%%%
+\begin{fmffile}{FeynmanT10StyleStealthSquark}
+\parbox{300mm}{
+
+\begin{fmfgraph*}(270,135) % \fmfpen{thick}
+  \fmfstraight
+  \fmfset{arrow_len}{cm}\fmfset{arrow_ang}{0}
+  
+  %%%%%%%%%%%% Specifying number of inputs/outputs
+  \fmfleftn{i}{2}
+
+  \fmfforce{0.w,0.95h}{i1}
+  \fmfforce{0.w,0.05h}{i2}
+
+  %% \fmfbottom{olantiq,olgamma,olgravitino,olgluino2}
+  %% \fmfright{olgluino1,ougluino1}
+  %% \fmftop{ouq,ougamma,ougravitino,ougluino2}
+
+  \fmflabel{}{i1}
+  \fmflabel{}{i2}
+    
+  %%%%%%%%%%%% Incoming protons (one line)
+  % v1 is the main interaction vertex
+  \fmf{fermion, tension=2., lab=p, label.side=right}{v1,i1}
+  \fmf{fermion, tension=2., lab=p, label.side=left}{v1,i2}
+
+  % set positions of upper output vertices manually
+  \fmfforce{0.52w, h}{ouq}
+  \fmfforce{0.68w, h}{ougamma}
+  \fmfforce{0.84w, h}{ougravitino}
+  \fmfforce{w, h}{ougluino2}
+  \fmfforce{w,0.75h}{ougluino1}
+
+  % set positions of upper internal vertices manually
+  \fmfforce{0.36w,0.75h}{v2}
+  \fmfforce{0.52w,0.75h}{v3}
+  \fmfforce{0.68w,0.75h}{v4}
+  \fmfforce{0.84w,0.75h}{v5}
+
+  % set positions of lower output vertices manually
+  \fmfforce{0.52w, 0}{olantiq}
+  \fmfforce{0.68w, 0}{olgamma}
+  \fmfforce{0.84w, 0}{olgravitino}
+  \fmfforce{w, 0}{olgluino2}
+  \fmfforce{w, 0.25h}{olgluino1}
+
+  % set positions of lower internal vertices manually
+  \fmfforce{0.36w,0.25h}{v6}
+  \fmfforce{0.52w,0.25h}{v7}
+  \fmfforce{0.68w,0.25h}{v8}
+  \fmfforce{0.84w,0.25h}{v9}
+         
+  %%%%%%%%%%%% Produced SUSY particles
+  \fmf{dashes, label=\sQb, label.side=right, label.dist=3.}{v1,v6} % lower antisquark
+  \fmf{dashes, label=\sQ, label.side=left, label.dist=3.}{v1,v2} % upper squark
+
+  %%%%%%%%%%%%% Decays and vertex circles
+
+  % upper squark decay: neutralino
+  \fmf{dots, label=\chiz,label.dist=-3, label.side=right, label.dist=3.}{v2,v3}
+  % upper squark decay: quark
+  \fmf{fermion}{ouq,v2}
+  \fmflabel{q}{ouq}
+
+  % upper neutralino decay: singlino
+  \fmf{fermion, foreground=black, label=\PSS, label.side=right, label.dist=3.}{v3,v4}
+  % upper neutralino decay: photon
+  \fmf{photon}{ougamma,v3}
+  \fmflabel{$\gamma$}{ougamma}
+
+  % upper singlino decay: singlet
+  \fmf{dashes, foreground=black, label=\PS, label.side=right, label.dist=3.}{v4,v5}
+  % upper singlino decay: gravitino
+  \fmf{fermion, foreground=black}{ougravitino,v4}
+  \fmflabel{\sGra}{ougravitino}
+
+  % upper singlet decay: lower gluon
+  \fmf{gluon}{ougluino1,v5}
+  \fmflabel{g}{ougluino1}
+  % upper singlet decay: upper gluon
+  \fmf{gluon}{ougluino2,v5}
+  \fmflabel{g}{ougluino2}
+
+  % lower antisquark decay: neutralino
+  \fmf{dots, label=\chiz,label.dist=+3, label.side=left, label.dist=3.}{v6,v7}
+  % lower antisquark decay: antiquark
+  \fmf{fermion}{olantiq,v6}
+  \fmflabel{\anti{q}}{olantiq}
+
+  % lower neutralino decay: singlino
+  \fmf{fermion, foreground=black, label=\PSS, label.side=left, label.dist=4.}{v7,v8}
+  % lower neutralino decay: photon
+  \fmf{photon}{olgamma,v7}
+  \fmflabel{$\gamma$}{olgamma}
+
+  % lower singlino decay: singlet
+  \fmf{dashes, foreground=black, label=\PS, label.side=left, label.dist=3.}{v8,v9}
+  % lower singlino decay: gravitino
+  \fmf{fermion, foreground=black}{olgravitino,v8}
+  \fmflabel{\sGra}{olgravitino}
+
+  % lower singlet decay: upper gluon
+  \fmf{gluon}{olgluino1,v9}
+  \fmflabel{g}{olgluino1}
+  % lower singlet decay: lower gluon
+  \fmf{gluon}{olgluino2,v9}
+  \fmflabel{g}{olgluino2}
+
+               
+  %% Vertex circles
+  \fmfdot{v2,v3,v4,v5,v6,v7}
+           
+  %%%%%%%%%%%% Additional lines on incoming protons and blob
+  %%%%%%%%%%%% Additional lines on incoming protons and blob
+  \fmffreeze
+  \renewcommand{\P}[3]{\fmfi{plain}{%
+      vpath(__#1,__#2) shifted (thick*(#3))}}
+  \P{i1}{v1}{2.,-0}
+  \P{i1}{v1}{-2,0}
+  \P{i2}{v1}{2.,0}
+  \P{i2}{v1}{-2.,-0}
+  \fmfv{decor.shape=circle,decor.filled=30, decor.size=.12w}{v1}
+  
+\end{fmfgraph*}
+       
+}           
+\end{fmffile} 
+
+\end{document}
