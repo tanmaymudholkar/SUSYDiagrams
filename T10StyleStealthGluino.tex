@@ -11,7 +11,7 @@
 
 
 %%%%%%%% THE NAME OF THE fmffile HAS TO BE ``Feynman<filename>'' TO USE compile.py %%%%%%%%%%%%%%%
-\begin{fmffile}{FeynmanT10StyleStealthSquark}
+\begin{fmffile}{FeynmanT10StyleStealthGluino}
 \parbox{300mm}{
 
 \begin{fmfgraph*}(270,135) % \fmfpen{thick}
@@ -37,19 +37,21 @@
   \fmf{fermion, tension=2., lab=p, label.side=left}{v1,i2}
 
   % set positions of upper output vertices manually
-  \fmfforce{0.52w, h}{ouq}
+  \fmfforce{0.36w, h}{ouq}
+  \fmfforce{0.52w, h}{ouantiq}
   \fmfforce{0.68w, h}{ougamma}
   \fmfforce{0.84w, h}{ougravitino}
   \fmfforce{w, h}{ougluino2}
   \fmfforce{w,0.75h}{ougluino1}
 
   % set positions of upper internal vertices manually
-  \fmfforce{0.36w,0.75h}{v2}
+  \fmfforce{0.3w,0.75h}{v2}
   \fmfforce{0.52w,0.75h}{v3}
   \fmfforce{0.68w,0.75h}{v4}
   \fmfforce{0.84w,0.75h}{v5}
 
   % set positions of lower output vertices manually
+  \fmfforce{0.36w, 0}{olq}
   \fmfforce{0.52w, 0}{olantiq}
   \fmfforce{0.68w, 0}{olgamma}
   \fmfforce{0.84w, 0}{olgravitino}
@@ -57,22 +59,28 @@
   \fmfforce{w, 0.25h}{olgluino1}
 
   % set positions of lower internal vertices manually
-  \fmfforce{0.36w,0.25h}{v6}
+  \fmfforce{0.3w,0.25h}{v6}
   \fmfforce{0.52w,0.25h}{v7}
   \fmfforce{0.68w,0.25h}{v8}
   \fmfforce{0.84w,0.25h}{v9}
          
   %%%%%%%%%%%% Produced SUSY particles
-  \fmf{dashes, label=\sQ, label.side=left, label.dist=3.}{v1,v2} % upper squark
-  \fmf{dashes, label=\sQb, label.side=right, label.dist=3.}{v1,v6} % lower antisquark
+  \fmf{gluon, label=\sGlu, label.side=left, label.dist=3.}{v1,v2} % upper gluino
+  \fmf{gluon, label=\sGlu, label.side=right, label.dist=3.}{v1,v6} % lower gluino
+  % add straight line to the gluon pattern
+  \fmf{fermion}{v1,v2} % upper gluino
+  \fmf{fermion}{v1,v6} % lower gluino
 
   %%%%%%%%%%%%% Decays and vertex circles
 
-  % upper squark decay: neutralino
+  % upper gluino decay: neutralino
   \fmf{dots, label=\chiz,label.dist=-3, label.side=right, label.dist=3.}{v2,v3}
-  % upper squark decay: quark
+  % upper gluino decay: quark
   \fmf{fermion}{ouq,v2}
   \fmflabel{q}{ouq}
+  % upper gluino decay: antiquark
+  \fmf{fermion}{ouantiq,v2}
+  \fmflabel{\anti{q}}{ouantiq}
 
   % upper neutralino decay: singlino
   \fmf{fermion, foreground=black, label=\PSS, label.side=right, label.dist=3.}{v3,v4}
@@ -93,9 +101,12 @@
   \fmf{gluon}{ougluino2,v5}
   \fmflabel{g}{ougluino2}
 
-  % lower antisquark decay: neutralino
+  % lower gluino decay: neutralino
   \fmf{dots, label=\chiz,label.dist=+3, label.side=left, label.dist=3.}{v6,v7}
-  % lower antisquark decay: antiquark
+  % lower gluino decay: quark
+  \fmf{fermion}{olq,v6}
+  \fmflabel{q}{olq}
+  % lower gluino decay: antiquark
   \fmf{fermion}{olantiq,v6}
   \fmflabel{\anti{q}}{olantiq}
 
